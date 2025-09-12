@@ -1,4 +1,4 @@
-const API_URL = ' https://face2-jswz.onrender.com';
+const API_URL = 'https://face2-jswz.onrender.com/api';
 
 const API = {
   // Fetch all products

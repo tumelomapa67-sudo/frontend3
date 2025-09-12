@@ -1,0 +1,173 @@
+/* === Stock Management Theme === */
+
+/* Container */
+.stock-management-container {
+  background: #f9fafb;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  font-family: 'Inter', sans-serif;
+  color: #1f2937;
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+/* Title */
+.stock-management-title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid #e5e7eb;
+  padding-bottom: 0.5rem;
+  animation: slideDown 0.6s ease-in-out;
+}
+
+/* Error */
+.stock-management-error {
+  color: #dc2626;
+  background: #fee2e2;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  animation: shake 0.4s ease-in-out;
+}
+
+/* Form container */
+.stock-management-form-container {
+  background: #ffffff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+  animation: fadeUp 0.6s ease-in-out;
+}
+
+.stock-management-form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+/* Inputs & Selects */
+.stock-management-input,
+.stock-management-select {
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: all 0.25s;
+}
+
+.stock-management-input:focus,
+.stock-management-select:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+  outline: none;
+  transform: scale(1.02);
+}
+
+/* Submit button */
+.stock-management-submit-btn {
+  background: #3b82f6;
+  color: white;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.25s, transform 0.2s;
+}
+
+.stock-management-submit-btn:hover {
+  background: #2563eb;
+  transform: translateY(-2px);
+}
+
+/* Table */
+.stock-management-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+.stock-management-table-head {
+  background: #f3f4f6;
+}
+
+.stock-management-table-header {
+  text-align: left;
+  padding: 1rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #374151;
+}
+
+.stock-management-table-body {
+  background: #ffffff;
+}
+
+.stock-management-table-row {
+  transition: background 0.25s, transform 0.2s;
+}
+
+.stock-management-table-row:nth-child(even) {
+  background: #f9fafb;
+}
+
+.stock-management-table-row:hover {
+  background: #eef2ff;
+  transform: scale(1.01);
+}
+
+.stock-management-table-cell {
+  padding: 0.85rem 1rem;
+  font-size: 0.95rem;
+  color: #111827;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* Status */
+.stock-management-low-stock {
+  color: #dc2626;
+  font-weight: 600;
+  animation: pulseRed 1.2s infinite;
+}
+
+.stock-management-sufficient {
+  color: #16a34a;
+  font-weight: 500;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  50% { transform: translateX(4px); }
+  75% { transform: translateX(-4px); }
+}
+
+@keyframes pulseRed {
+  0%, 100% { color: #dc2626; }
+  50% { color: #ef4444; }
+}

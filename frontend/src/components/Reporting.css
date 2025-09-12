@@ -1,0 +1,121 @@
+/* Reporting.css - Styles specific to Reporting.js */
+
+/* Main container */
+#reporting-main.reporting-container {
+  padding: 2rem;
+  background-color: #edeef0;
+  min-height: 100vh;
+}
+
+/* Title */
+#reporting-title.reporting-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* Error message */
+#reporting-error.reporting-error {
+  color: #dc2626;
+  background-color: #fee2e2;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-weight: 500;
+}
+
+/* Section container */
+.reporting-section {
+  margin-bottom: 2rem;
+}
+
+/* Section title */
+.reporting-section-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 1rem;
+}
+
+/* Table */
+.reporting-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #ffffff;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Table head */
+.reporting-table-head {
+  background-color: #e5e7eb;
+}
+
+/* Table header */
+.reporting-table-header {
+  padding: 1rem;
+  font-weight: 600;
+  color: #374151;
+  border-bottom: 2px solid #d1d5db;
+  text-align: left;
+}
+
+/* Table row */
+.reporting-table-row {
+  transition: background-color 0.2s ease;
+}
+
+.reporting-table-row:hover {
+  background-color: #f9fafb;
+}
+
+/* Table cell */
+.reporting-table-cell {
+  padding: 1rem;
+  border-bottom: 1px solid #d1d5db;
+  color: #1e293b;
+}
+
+/* Image cell (for future use) */
+.reporting-image-cell {
+  text-align: center;
+}
+
+/* Product image (for future use) */
+.reporting-product-image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.reporting-product-image:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* No image placeholder (for future use) */
+.reporting-no-image {
+  color: #6b7280;
+  font-style: italic;
+}
+
+/* Low stock value */
+.reporting-low-stock {
+  color: #dc2626;
+  font-weight: 700;
+}
+
+/* Specific table styles for visual distinction */
+#low-stock-table.reporting-table {
+  border: 2px solid #fb7185; /* Distinct rose border for low stock */
+}
+
+#sales-summary-table.reporting-table {
+  border: 2px solid #4ade80; /* Distinct green border for sales summary */
+}

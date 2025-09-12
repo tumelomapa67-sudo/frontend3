@@ -1,0 +1,98 @@
+/* ================================
+   Global Layout
+================================ */
+#app-main {
+  display: flex;
+  height: 100vh;
+  font-family: "Segoe UI", sans-serif;
+  background-color: #f0f5f9;
+  color: #2f3e46;
+}
+
+/* ================================
+   Sidebar Navigation
+================================ */
+#app-nav {
+  width: 260px;
+  background-color: #2f3e46;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.15);
+  animation: slideInLeft 0.8s ease;
+}
+
+.app-nav-header {
+  padding: 20px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+  background-color: #354f52;
+  border-bottom: 2px solid #cad2c5;
+  letter-spacing: 0.5px;
+}
+
+#app-nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex: 1;
+}
+
+.app-nav-item {
+  margin: 4px 0;
+}
+
+.app-nav-btn {
+  width: 100%;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #d8e2dc;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.app-nav-btn:hover {
+  background-color: #52796f;
+  transform: translateX(4px);
+}
+
+.app-nav-btn-active {
+  background-color: #84a98c;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.app-nav-icon {
+  margin-right: 12px;
+  font-size: 1.2rem;
+}
+
+/* ================================
+   Content Area
+================================ */
+#app-content {
+  flex: 1;
+  padding: 24px;
+  overflow-y: auto;
+  background-color: #f5f1e7;
+  animation: fadeIn 1s ease;
+}
+
+/* ================================
+   Animations
+================================ */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInLeft {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}

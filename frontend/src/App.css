@@ -9,6 +9,15 @@
   color: #2f3e46;
 }
 
+/* NEW: Add a wrapper to handle layout */
+.app-main-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 100vh;
+  overflow: hidden;
+}
+
 /* ================================
    Sidebar Navigation
 ================================ */
@@ -85,6 +94,18 @@
 }
 
 /* ================================
+   Footer
+================================ */
+#app-footer {
+  background-color: #2f3e46;
+  color: #ffffff;
+  text-align: center;
+  padding: 12px 20px;
+  font-size: 14px;
+  border-top: 1px solid #ccc;
+}
+
+/* ================================
    Animations
 ================================ */
 @keyframes fadeIn {
@@ -96,3 +117,4 @@
   from { transform: translateX(-100%); }
   to { transform: translateX(0); }
 }
+

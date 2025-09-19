@@ -12,7 +12,6 @@ function ProductManagement() {
     quantity: '',
     imageUrl: '',
   });
-  const [imageFile, setImageFile] = useState(null);
   const [editId, setEditId] = useState(null);
   const [error, setError] = useState(null);
 
@@ -38,11 +37,6 @@ function ProductManagement() {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleFileChange = (e) => {
-    setImageFile(e.target.files[0]);
-    setFormData({ ...formData, imageUrl: '' }); // Clear URL if file is selected
-  };
-
   const handleSubmit = async () => {
     try {
       const productData = {
@@ -55,10 +49,10 @@ function ProductManagement() {
       };
 
       if (editId) {
-        await API.updateProduct(editId, productData, imageFile);
+        await API.updateProduct(editId, productData);
         setEditId(null);
       } else {
-        await API.addProduct(productData, imageFile);
+        await API.addProduct(productData);
       }
 
       setFormData({
@@ -69,7 +63,7 @@ function ProductManagement() {
         quantity: '',
         imageUrl: '',
       });
-      setImageFile(null);
+
       fetchProducts();
       setError(null);
     } catch (err) {
@@ -84,16 +78,13 @@ function ProductManagement() {
   const handleEdit = (product) => {
     setEditId(product.id);
     setFormData({
-      name: product.name || '',
-      description: product.description || '',
-      category: product.category || '',
-      price: product.price?.toString() || '',
-      quantity: product.quantity?.toString() || '',
-      imageUrl: product.imagePath && !product.imagePath.startsWith('/uploads/')
-        ? product.imagePath
-        : '',
+      name: product.name,
+      description: product.description,
+      category: product.category,
+      price: product.price.toString(),
+      quantity: product.quantity.toString(),
+      imageUrl: product.imagePath?.startsWith('/uploads/') ? '' : product.imagePath || '',
     });
-    setImageFile(null);
   };
 
   const handleDelete = async (id) => {
@@ -110,17 +101,12 @@ function ProductManagement() {
     }
   };
 
-  const formatPrice = (price) => {
-    const num = Number(price);
-    return Number.isFinite(num) ? `$${num.toFixed(2)}` : 'N/A';
-  };
-
   return (
     <div className="product-management-container" id="product-management-main">
       <h2 className="product-management-title" id="product-management-title">Product Management</h2>
       {error && <p className="product-management-error" id="product-management-error">{error}</p>}
 
-      {/* Add/Update Product Form */}
+      {/* Product Form */}
       <div className="product-management-form-container" id="product-management-form">
         <div className="product-management-form-grid">
           <input
@@ -130,7 +116,6 @@ function ProductManagement() {
             onChange={handleInputChange}
             placeholder="Product Name"
             className="product-management-input"
-            id="input-product-name"
             required
           />
           <input
@@ -140,7 +125,6 @@ function ProductManagement() {
             onChange={handleInputChange}
             placeholder="Description"
             className="product-management-input"
-            id="input-product-description"
             required
           />
           <input
@@ -150,7 +134,6 @@ function ProductManagement() {
             onChange={handleInputChange}
             placeholder="Category"
             className="product-management-input"
-            id="input-product-category"
             required
           />
           <input
@@ -159,9 +142,8 @@ function ProductManagement() {
             value={formData.price}
             onChange={handleInputChange}
             placeholder="Price"
-            className="product-management-input"
-            id="input-product-price"
             step="0.01"
+            className="product-management-input"
             required
           />
           <input
@@ -169,32 +151,22 @@ function ProductManagement() {
             name="quantity"
             value={formData.quantity}
             onChange={handleInputChange}
-            placeholder="Initial Quantity"
+            placeholder="Quantity"
             className="product-management-input"
-            id="input-product-quantity"
             required
-          />
-          <input
-            type="file"
-            onChange={handleFileChange}
-            accept="image/*"
-            className="product-management-input product-management-file-input"
-            id="input-product-image"
           />
           <input
             type="text"
             name="imageUrl"
             value={formData.imageUrl}
             onChange={handleInputChange}
-            placeholder="Image URL (alternative to file upload)"
+            placeholder="Image URL"
             className="product-management-input"
-            id="input-product-image-url"
           />
         </div>
         <button
           onClick={handleSubmit}
           className="product-management-submit-btn"
-          id="product-management-submit"
         >
           {editId ? 'Update Product' : 'Add Product'}
         </button>
@@ -219,14 +191,9 @@ function ProductManagement() {
               <td className="product-management-table-cell product-management-image-cell">
                 {product.imagePath ? (
                   <img
-                    src={
-                      product.imagePath.startsWith('http')
-                        ? product.imagePath
-                        : `http://localhost:3001${product.imagePath}`
-                    }
+                    src={product.imagePath.startsWith('http') ? product.imagePath : `http://localhost:3001${product.imagePath}`}
                     alt={product.name}
                     className="product-management-product-image"
-                    id={`product-image-${product.id}`}
                   />
                 ) : (
                   <span className="product-management-no-image">No Image</span>
@@ -235,20 +202,20 @@ function ProductManagement() {
               <td className="product-management-table-cell">{product.name}</td>
               <td className="product-management-table-cell">{product.description}</td>
               <td className="product-management-table-cell">{product.category}</td>
-              <td className="product-management-table-cell">{formatPrice(product.price)}</td>
+              <td className="product-management-table-cell">
+                M{(product.price ?? 0).toFixed(2)}
+              </td>
               <td className="product-management-table-cell">{product.quantity}</td>
               <td className="product-management-table-cell">
                 <button
                   onClick={() => handleEdit(product)}
                   className="product-management-edit-btn"
-                  id={`edit-btn-${product.id}`}
                 >
                   Edit
                 </button>
                 <button
                   onClick={() => handleDelete(product.id)}
                   className="product-management-delete-btn"
-                  id={`delete-btn-${product.id}`}
                 >
                   Delete
                 </button>
@@ -262,5 +229,6 @@ function ProductManagement() {
 }
 
 export default ProductManagement;
+
 
 

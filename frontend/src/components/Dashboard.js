@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import API from './API';
-import './Dashboard.css'; // Import the new CSS file
+import './Dashboard.css';
 
 function Dashboard() {
   const [products, setProducts] = useState([]);
@@ -8,7 +8,6 @@ function Dashboard() {
   const [customers, setCustomers] = useState([]);
   const [error, setError] = useState(null);
 
-  // Fetch data on component mount
   useEffect(() => {
     fetchData();
   }, []);
@@ -32,13 +31,15 @@ function Dashboard() {
     }
   };
 
-  // Calculate metrics
+  // Helpers
+  const formatPrice = (price) =>
+    typeof price === 'number' ? `$${price.toFixed(2)}` : 'N/A';
+
+  // Metrics
   const totalProducts = products.length;
   const lowStockProducts = products.filter((product) => product.quantity < 10).length;
   const totalSales = sales.length;
   const totalCustomers = customers.length;
-
-  // Get recent sales (last 5)
   const recentSales = sales.slice(0, 5);
 
   return (
@@ -111,7 +112,11 @@ function Dashboard() {
                   <td className="dashboard-table-cell dashboard-image-cell">
                     {product.imagePath ? (
                       <img
-                        src={product.imagePath.startsWith('http') ? product.imagePath : `http://localhost:3001${product.imagePath}`}
+                        src={
+                          product.imagePath.startsWith('http')
+                            ? product.imagePath
+                            : `http://localhost:3001${product.imagePath}`
+                        }
                         alt={product.name}
                         className="dashboard-product-image"
                         id={`product-image-${product.id}`}
@@ -122,7 +127,9 @@ function Dashboard() {
                   </td>
                   <td className="dashboard-table-cell">{product.name}</td>
                   <td className="dashboard-table-cell">{product.category}</td>
-                  <td className="dashboard-table-cell dashboard-low-stock">{product.quantity}</td>
+                  <td className="dashboard-table-cell dashboard-low-stock">
+                    {product.quantity}
+                  </td>
                 </tr>
               ))}
           </tbody>
@@ -148,7 +155,11 @@ function Dashboard() {
                 <td className="dashboard-table-cell dashboard-image-cell">
                   {product.imagePath ? (
                     <img
-                      src={product.imagePath.startsWith('http') ? product.imagePath : `http://localhost:3001${product.imagePath}`}
+                      src={
+                        product.imagePath.startsWith('http')
+                          ? product.imagePath
+                          : `http://localhost:3001${product.imagePath}`
+                      }
                       alt={product.name}
                       className="dashboard-product-image"
                       id={`product-image-${product.id}`}
@@ -159,7 +170,7 @@ function Dashboard() {
                 </td>
                 <td className="dashboard-table-cell">{product.name}</td>
                 <td className="dashboard-table-cell">{product.category}</td>
-                <td className="dashboard-table-cell">${product.price.toFixed(2)}</td>
+                <td className="dashboard-table-cell">{formatPrice(product.price)}</td>
                 <td className="dashboard-table-cell">{product.quantity}</td>
               </tr>
             ))}

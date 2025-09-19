@@ -3,94 +3,75 @@
 ================================ */
 #app-main {
   display: flex;
+  flex-direction: column;
   height: 100vh;
   font-family: "Segoe UI", sans-serif;
   background-color: #f0f5f9;
   color: #2f3e46;
+  overflow: hidden;
 }
 
-/* NEW: Add a wrapper to handle layout */
 .app-main-content {
   display: flex;
   flex-direction: column;
   flex: 1;
-  height: 100vh;
   overflow: hidden;
 }
 
-/* ================================
-   Sidebar Navigation
-================================ */
-#app-nav {
-  width: 260px;
-  background-color: #2f3e46;
-  color: #ffffff;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.15);
-  animation: slideInLeft 0.8s ease;
-}
-
-.app-nav-header {
-  padding: 20px;
-  font-size: 1.2rem;
-  font-weight: bold;
-  text-align: center;
-  background-color: #354f52;
-  border-bottom: 2px solid #cad2c5;
-  letter-spacing: 0.5px;
-}
-
-#app-nav-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  flex: 1;
-}
-
-.app-nav-item {
-  margin: 4px 0;
-}
-
-.app-nav-btn {
-  width: 100%;
-  padding: 12px 20px;
-  display: flex;
-  align-items: center;
-  background: transparent;
-  border: none;
-  outline: none;
-  color: #d8e2dc;
-  font-size: 0.95rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.app-nav-btn:hover {
-  background-color: #52796f;
-  transform: translateX(4px);
-}
-
-.app-nav-btn-active {
-  background-color: #84a98c;
-  color: #ffffff;
-  font-weight: bold;
-}
-
-.app-nav-icon {
-  margin-right: 12px;
-  font-size: 1.2rem;
-}
-
-/* ================================
-   Content Area
-================================ */
 #app-content {
   flex: 1;
   padding: 24px;
   overflow-y: auto;
   background-color: #f5f1e7;
   animation: fadeIn 1s ease;
+}
+
+/* ================================
+   Top Navigation Bar
+================================ */
+.top-nav {
+  background-color: #2f3e46;
+  padding: 16px 20px;
+  text-align: center;
+  border-bottom: 1px solid #cad2c5;
+}
+
+.nav-title {
+  color: #ffffff;
+  margin-bottom: 10px;
+  font-size: 1.6rem;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+.top-nav-list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 12px;
+}
+
+.top-nav-list li button {
+  background: transparent;
+  border: none;
+  padding: 10px 16px;
+  font-size: 1rem;
+  color: #ffffff;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.top-nav-list li button:hover {
+  background-color: #52796f;
+}
+
+.top-nav-list li button.active {
+  background-color: #84a98c;
+  font-weight: bold;
 }
 
 /* ================================
@@ -113,8 +94,4 @@
   to { opacity: 1; }
 }
 
-@keyframes slideInLeft {
-  from { transform: translateX(-100%); }
-  to { transform: translateX(0); }
-}
 

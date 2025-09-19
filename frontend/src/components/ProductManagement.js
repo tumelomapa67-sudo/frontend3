@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import API from './API';
-import './ProductManagement.css'; // Import the new CSS file
+import './ProductManagement.css';
 
 function ProductManagement() {
   const [products, setProducts] = useState([]);
@@ -16,7 +16,6 @@ function ProductManagement() {
   const [editId, setEditId] = useState(null);
   const [error, setError] = useState(null);
 
-  // Fetch products on component mount
   useEffect(() => {
     fetchProducts();
   }, []);
@@ -41,7 +40,7 @@ function ProductManagement() {
 
   const handleFileChange = (e) => {
     setImageFile(e.target.files[0]);
-    setFormData({ ...formData, imageUrl: '' }); // Clear URL if file is selected
+    setFormData({ ...formData, imageUrl: '' });
   };
 
   const handleSubmit = async () => {
@@ -50,20 +49,26 @@ function ProductManagement() {
         name: formData.name,
         description: formData.description,
         category: formData.category,
-        price: formData.price,
-        quantity: formData.quantity,
+        price: parseFloat(formData.price),
+        quantity: parseInt(formData.quantity, 10),
         imageUrl: formData.imageUrl,
       };
 
       if (editId) {
-        // Update existing product
         await API.updateProduct(editId, productData, imageFile);
         setEditId(null);
       } else {
-        // Add new product
         await API.addProduct(productData, imageFile);
       }
-      setFormData({ name: '', description: '', category: '', price: '', quantity: '', imageUrl: '' });
+
+      setFormData({
+        name: '',
+        description: '',
+        category: '',
+        price: '',
+        quantity: '',
+        imageUrl: '',
+      });
       setImageFile(null);
       fetchProducts();
       setError(null);
@@ -82,9 +87,12 @@ function ProductManagement() {
       name: product.name,
       description: product.description,
       category: product.category,
-      price: product.price.toString(),
-      quantity: product.quantity.toString(),
-      imageUrl: product.imagePath && !product.imagePath.startsWith('/uploads/') ? product.imagePath : '',
+      price: product.price?.toString() || '',
+      quantity: product.quantity?.toString() || '',
+      imageUrl:
+        product.imagePath && !product.imagePath.startsWith('/uploads/')
+          ? product.imagePath
+          : '',
     });
     setImageFile(null);
   };
@@ -103,10 +111,21 @@ function ProductManagement() {
     }
   };
 
+  // Safe price formatter
+  const formatPrice = (price) => {
+    return Number.isFinite(price) ? `$${price.toFixed(2)}` : 'N/A';
+  };
+
   return (
     <div className="product-management-container" id="product-management-main">
-      <h2 className="product-management-title" id="product-management-title">Product Management</h2>
-      {error && <p className="product-management-error" id="product-management-error">{error}</p>}
+      <h2 className="product-management-title" id="product-management-title">
+        Product Management
+      </h2>
+      {error && (
+        <p className="product-management-error" id="product-management-error">
+          {error}
+        </p>
+      )}
 
       {/* Add/Update Product Form */}
       <div className="product-management-form-container" id="product-management-form">
@@ -207,7 +226,11 @@ function ProductManagement() {
               <td className="product-management-table-cell product-management-image-cell">
                 {product.imagePath ? (
                   <img
-                    src={product.imagePath.startsWith('http') ? product.imagePath : `http://localhost:3001${product.imagePath}`}
+                    src={
+                      product.imagePath.startsWith('http')
+                        ? product.imagePath
+                        : `http://localhost:3001${product.imagePath}`
+                    }
                     alt={product.name}
                     className="product-management-product-image"
                     id={`product-image-${product.id}`}
@@ -219,7 +242,7 @@ function ProductManagement() {
               <td className="product-management-table-cell">{product.name}</td>
               <td className="product-management-table-cell">{product.description}</td>
               <td className="product-management-table-cell">{product.category}</td>
-              <td className="product-management-table-cell">${product.price.toFixed(2)}</td>
+              <td className="product-management-table-cell">{formatPrice(product.price)}</td>
               <td className="product-management-table-cell">{product.quantity}</td>
               <td className="product-management-table-cell">
                 <button

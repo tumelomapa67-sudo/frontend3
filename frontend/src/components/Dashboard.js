@@ -19,9 +19,9 @@ function Dashboard() {
         API.getSales(),
         API.getCustomers(),
       ]);
-      setProducts(productData);
-      setSales(salesData);
-      setCustomers(customerData);
+      setProducts(productData || []);
+      setSales(salesData || []);
+      setCustomers(customerData || []);
     } catch (err) {
       setError(
         err.message.includes('Failed to fetch')
@@ -31,11 +31,10 @@ function Dashboard() {
     }
   };
 
-  // Helpers
+  // ✅ Safely format price values
   const formatPrice = (price) =>
-    typeof price === 'number' ? `$${price.toFixed(2)}` : 'N/A';
+    Number.isFinite(price) ? `$${price.toFixed(2)}` : 'N/A';
 
-  // Metrics
   const totalProducts = products.length;
   const lowStockProducts = products.filter((product) => product.quantity < 10).length;
   const totalSales = sales.length;
@@ -182,3 +181,4 @@ function Dashboard() {
 }
 
 export default Dashboard;
+

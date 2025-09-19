@@ -40,7 +40,7 @@ function ProductManagement() {
 
   const handleFileChange = (e) => {
     setImageFile(e.target.files[0]);
-    setFormData({ ...formData, imageUrl: '' });
+    setFormData({ ...formData, imageUrl: '' }); // Clear URL if file is selected
   };
 
   const handleSubmit = async () => {
@@ -50,7 +50,7 @@ function ProductManagement() {
         description: formData.description,
         category: formData.category,
         price: parseFloat(formData.price),
-        quantity: parseInt(formData.quantity, 10),
+        quantity: parseInt(formData.quantity),
         imageUrl: formData.imageUrl,
       };
 
@@ -84,15 +84,14 @@ function ProductManagement() {
   const handleEdit = (product) => {
     setEditId(product.id);
     setFormData({
-      name: product.name,
-      description: product.description,
-      category: product.category,
+      name: product.name || '',
+      description: product.description || '',
+      category: product.category || '',
       price: product.price?.toString() || '',
       quantity: product.quantity?.toString() || '',
-      imageUrl:
-        product.imagePath && !product.imagePath.startsWith('/uploads/')
-          ? product.imagePath
-          : '',
+      imageUrl: product.imagePath && !product.imagePath.startsWith('/uploads/')
+        ? product.imagePath
+        : '',
     });
     setImageFile(null);
   };
@@ -111,21 +110,15 @@ function ProductManagement() {
     }
   };
 
-  // Safe price formatter
   const formatPrice = (price) => {
-    return Number.isFinite(price) ? `$${price.toFixed(2)}` : 'N/A';
+    const num = Number(price);
+    return Number.isFinite(num) ? `$${num.toFixed(2)}` : 'N/A';
   };
 
   return (
     <div className="product-management-container" id="product-management-main">
-      <h2 className="product-management-title" id="product-management-title">
-        Product Management
-      </h2>
-      {error && (
-        <p className="product-management-error" id="product-management-error">
-          {error}
-        </p>
-      )}
+      <h2 className="product-management-title" id="product-management-title">Product Management</h2>
+      {error && <p className="product-management-error" id="product-management-error">{error}</p>}
 
       {/* Add/Update Product Form */}
       <div className="product-management-form-container" id="product-management-form">
@@ -269,3 +262,5 @@ function ProductManagement() {
 }
 
 export default ProductManagement;
+
+

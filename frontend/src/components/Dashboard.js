@@ -31,9 +31,9 @@ function Dashboard() {
     }
   };
 
-  // ✅ Safely format price values
+  // ✅ Changed currency from $ to M
   const formatPrice = (price) =>
-    Number.isFinite(price) ? `$${price.toFixed(2)}` : 'N/A';
+    Number.isFinite(price) ? `M${price.toFixed(2)}` : 'N/A';
 
   const totalProducts = products.length;
   const lowStockProducts = products.filter((product) => product.quantity < 10).length;
@@ -181,4 +181,5 @@ function Dashboard() {
 }
 
 export default Dashboard;
+
 

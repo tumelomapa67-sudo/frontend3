@@ -31,7 +31,7 @@ function App() {
 
   return (
     <div className="app-container" id="app-main">
-      {/* Top Navigation */}
+      {/* Top Nav Bar */}
       <nav className="top-nav" id="top-nav">
         <h2 className="nav-title">Wings Cafe Inventory</h2>
         <ul className="top-nav-list" id="top-nav-list">
@@ -86,12 +86,13 @@ function App() {
         </ul>
       </nav>
 
-      {/* Main Content + Footer */}
+      {/* Main Content */}
       <div className="app-main-content">
         <div className="app-content" id="app-content">
           {renderView()}
         </div>
 
+        {/* Footer */}
         <footer className="app-footer" id="app-footer">
           <p>&copy; {new Date().getFullYear()} Wings Cafe Inventory System. All rights reserved.</p>
         </footer>
@@ -101,4 +102,5 @@ function App() {
 }
 
 export default App;
+
 

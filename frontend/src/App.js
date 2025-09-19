@@ -1,5 +1,12 @@
 import React, { useState } from 'react';
-import { FaTachometerAlt, FaBox, FaWarehouse, FaShoppingCart, FaUsers, FaChartBar } from 'react-icons/fa';
+import {
+  FaTachometerAlt,
+  FaBox,
+  FaWarehouse,
+  FaShoppingCart,
+  FaUsers,
+  FaChartBar,
+} from 'react-icons/fa';
 import Dashboard from './components/Dashboard';
 import ProductManagement from './components/ProductManagement';
 import StockManagement from './components/StockManagement';
@@ -34,11 +41,9 @@ function App() {
     <div className="app-container" id="app-main">
       {/* Sidebar */}
       <nav className="app-nav" id="app-nav">
-        {/* Sidebar Title */}
         <div className="app-nav-header">
           <h2>Wings Cafe Inventory</h2>
         </div>
-
         <ul className="app-nav-list" id="app-nav-list">
           <li className="app-nav-item">
             <button
@@ -103,8 +108,17 @@ function App() {
         </ul>
       </nav>
 
-      {/* Main Content */}
-      <div className="app-content" id="app-content">{renderView()}</div>
+      {/* Main Content + Footer Wrapper */}
+      <div className="app-main-content">
+        <div className="app-content" id="app-content">
+          {renderView()}
+        </div>
+
+        {/* Footer */}
+        <footer className="app-footer" id="app-footer">
+          <p>&copy; {new Date().getFullYear()} Wings Cafe Inventory System. All rights reserved.</p>
+        </footer>
+      </div>
     </div>
   );
 }

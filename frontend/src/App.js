@@ -1,12 +1,4 @@
 import React, { useState } from 'react';
-import {
-  FaTachometerAlt,
-  FaBox,
-  FaWarehouse,
-  FaShoppingCart,
-  FaUsers,
-  FaChartBar,
-} from 'react-icons/fa';
 import Dashboard from './components/Dashboard';
 import ProductManagement from './components/ProductManagement';
 import StockManagement from './components/StockManagement';
@@ -39,82 +31,67 @@ function App() {
 
   return (
     <div className="app-container" id="app-main">
-      {/* Sidebar */}
-      <nav className="app-nav" id="app-nav">
-        <div className="app-nav-header">
-          <h2>Wings Cafe Inventory</h2>
-        </div>
-        <ul className="app-nav-list" id="app-nav-list">
-          <li className="app-nav-item">
+      {/* Top Navigation */}
+      <nav className="top-nav" id="top-nav">
+        <h2 className="nav-title">Wings Cafe Inventory</h2>
+        <ul className="top-nav-list" id="top-nav-list">
+          <li>
             <button
               onClick={() => setCurrentView('dashboard')}
-              className={`app-nav-btn ${currentView === 'dashboard' ? 'app-nav-btn-active' : ''}`}
-              id="nav-dashboard"
+              className={currentView === 'dashboard' ? 'active' : ''}
             >
-              <FaTachometerAlt className="app-nav-icon" />
               Dashboard
             </button>
           </li>
-          <li className="app-nav-item">
+          <li>
             <button
               onClick={() => setCurrentView('products')}
-              className={`app-nav-btn ${currentView === 'products' ? 'app-nav-btn-active' : ''}`}
-              id="nav-products"
+              className={currentView === 'products' ? 'active' : ''}
             >
-              <FaBox className="app-nav-icon" />
               Product Management
             </button>
           </li>
-          <li className="app-nav-item">
+          <li>
             <button
               onClick={() => setCurrentView('stock')}
-              className={`app-nav-btn ${currentView === 'stock' ? 'app-nav-btn-active' : ''}`}
-              id="nav-stock"
+              className={currentView === 'stock' ? 'active' : ''}
             >
-              <FaWarehouse className="app-nav-icon" />
               Stock Management
             </button>
           </li>
-          <li className="app-nav-item">
+          <li>
             <button
               onClick={() => setCurrentView('sales')}
-              className={`app-nav-btn ${currentView === 'sales' ? 'app-nav-btn-active' : ''}`}
-              id="nav-sales"
+              className={currentView === 'sales' ? 'active' : ''}
             >
-              <FaShoppingCart className="app-nav-icon" />
               Sales
             </button>
           </li>
-          <li className="app-nav-item">
+          <li>
             <button
               onClick={() => setCurrentView('customers')}
-              className={`app-nav-btn ${currentView === 'customers' ? 'app-nav-btn-active' : ''}`}
-              id="nav-customers"
+              className={currentView === 'customers' ? 'active' : ''}
             >
-              <FaUsers className="app-nav-icon" />
               Customers
             </button>
           </li>
-          <li className="app-nav-item">
+          <li>
             <button
               onClick={() => setCurrentView('reporting')}
-              className={`app-nav-btn ${currentView === 'reporting' ? 'app-nav-btn-active' : ''}`}
-              id="nav-reporting"
+              className={currentView === 'reporting' ? 'active' : ''}
             >
-              <FaChartBar className="app-nav-icon" />
               Reporting
             </button>
           </li>
         </ul>
       </nav>
 
-      {/* Main Content + Footer Wrapper */}
+      {/* Main Content + Footer */}
       <div className="app-main-content">
         <div className="app-content" id="app-content">
           {renderView()}
         </div>
 
-        {/* Footer */}
         <footer className="app-footer" id="app-footer">
           <p>&copy; {new Date().getFullYear()} Wings Cafe Inventory System. All rights reserved.</p>
         </footer>
@@ -124,3 +101,4 @@ function App() {
 }
 
 export default App;
+
